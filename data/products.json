@@ -1,0 +1,23 @@
+[
+    {
+      "id": "111",
+      "name": "Salata",
+      "price": 1.5,
+      "stock": 50,
+      "image": "/images/salata.jpg"
+    },
+    {
+      "id": "122",
+      "name": "Rajčica",
+      "price": 2.0,
+      "stock": 30,
+      "image": "/images/rajcica.jpg"
+    },
+    {
+      "id": "133",
+      "name": "Lubenica",
+      "price": 9,
+      "stock": 40,
+      "image": "/images/lubenica.jpg"
+    }
+  ]

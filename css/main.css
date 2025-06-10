@@ -1,0 +1,494 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* poppins-regular - latin_latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "OpenSans";
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/open-sans-v40-latin_latin-ext-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+
+/* display montserrat font instead */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/montserrat-v26-latin_latin-ext-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+.visually-hidden{
+  display: none;
+}
+
+nav{ 
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  font-family: "Montserrat";
+  font-size: 1.5rem;
+  height: 60px;
+  list-style: none;
+}
+
+nav a{
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover{
+  color: rgb(0, 224, 0);
+}
+
+.brand-name{
+  flex: 1;
+}
+
+.nav-center {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  list-style: none;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-end {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+  list-style: none;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+
+body {
+  background-color: #474747;
+  color: white;
+  font-family: "OpenSans";
+}
+
+main {
+  font-size: 1.5rem;
+}
+
+.document-center {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/*We do this because the carousel needs to be 100% width 
+in order for the aspect ratio trick to work*/
+.carousel-container {
+  width: 100%;
+}
+
+/*This is the actual carousel. Overflow hidden acts as a mask*/
+
+.carousel {
+  position: relative;
+  width: 100%;
+  /*Width of image is 1000px. Height is 300px.*/
+  /* padding-top: calc(300 / 1000 * 100%); */
+  height: 40dvh;
+  overflow: hidden;
+}
+
+.carousel-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.left-arrow {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 10dvw;
+  cursor: pointer;
+}
+
+.left-arrow:hover {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+}
+
+.left-arrow:hover .chevron,
+.right-arrow:hover .chevron {
+  border-color: green;
+}
+
+.right-arrow {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 10dvw;
+  cursor: pointer;
+}
+
+.right-arrow:hover {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+}
+
+.chevron {
+  width: 25px;
+  height: 25px;
+  border: solid rgba(255, 255, 255, 0.5);
+  border-width: 10px 10px 0 0;
+}
+
+.chevron.right {
+  transform: rotate(45deg);
+}
+
+.chevron.left {
+  transform: rotate(-135deg);
+}
+
+.circle-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 25px;
+}
+
+.circle {
+  border: 1px solid white;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.circle-fill {
+  background-color: white;
+}
+
+.text-container {
+
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  justify-content: start;
+  bottom: 30%;
+  left: 15%;
+  right: 5%;
+  width: 100%;
+  color: white;
+  text-shadow: 0.2dvw 0.2dvw black;
+  text-align: left;
+  font-size: 4dvh;
+  margin: auto;
+  font-family: "Montserrat";
+  font-weight: 700;
+}
+
+.text-container a {
+  text-decoration: none;
+}
+
+.text-container button{
+  padding: 1dvh;
+  border-radius: 20px;
+  font-size: 3dvh;
+  margin-top: 1%;
+  background-color: rgb(34, 163, 34);
+  box-shadow: 2px 2px black;
+  border: 2px solid black;
+  font-family: "Montserrat";
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+}
+
+.text-container  button:hover{
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.carousel-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Animations */
+@keyframes toRight {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes toLeft {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+@keyframes comeRight {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes comeLeft {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+h3{
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+
+
+#product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  /* background-color: #f8f8f8; */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 4px solid green;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 300px;
+  height: 100%;
+  min-height: 550px;
+  /* background-color: white; */
+  transition: transform 0.3s;
+}
+
+.container:hover {
+  border-color: rgb(0, 161, 0);
+}
+
+
+.first img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.first img:hover {
+  transform: scale(1.05);
+}
+
+.second {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  flex: 1 1 auto;
+  font-size: 0.95rem;
+  text-align: center;
+  font-family: "Montserrat";
+}
+
+.third {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+  gap: 5px;
+}
+
+.third button {
+  flex: 1 1 30%;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-add {
+  background-color: #4CAF50;
+  color: white;
+  border: none
+}
+
+.btn-remove {
+  background-color: #f44336;
+  color: white;
+  border: none
+}
+
+.btn-buy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+  border: 3px solid green;
+  transition: border-color 0.5s
+}
+
+.btn-buy:hover{
+  border-color: white;
+}
+
+.btn-buy img {
+  width: 40px;
+  height: 25px;
+}
+
+.third input[type="number"] {
+  width: 35%;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.submission-log {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7); /* semi-transparent black */
+  border: 1px solid #00ff00; /* green border */
+  border-radius: 8px; /* rounded corners */
+  padding: 0.5em 1em;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  margin-top: 0.5em;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.submission-log .price-green {
+  color: #00ff00;
+}
+
+.submission-log.show {
+  opacity: 1;
+}
+
+.product-info-text{
+  margin: 0 20% 0 20%;
+}
+
+footer{
+  background-color: rgb(5, 5, 5);
+  border-top-left-radius: 30px;
+  padding-top: 1rem;
+  font-size: 1.5rem;
+}
+
+footer h3{
+  margin-left: 3rem;
+}
+
+.kontakt{
+  padding-left: 2rem;
+}
+
+.media-images{
+  padding-top: 1rem;
+  display: flex;
+  gap: 5px;
+}
+
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.svg-whatsapp{
+  width: 36px;
+  height: 36px;
+}
+
+.svg-facebook-path{
+  fill:none;
+  stroke:#ffffff;
+  stroke-width:1.3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:10;
+}
+
+.facebook-icon:hover path{
+  fill: #1877F2;
+}
+
+.svg-whatsapp-path{
+  fill: #ffffff;
+}
+
+.whatsapp-icon:hover{
+  background-color: #25D366;
+}
+
+.kontakt-info{
+  margin-top: 1rem;
+}
+
+
+
+/* pros and cons of inline svg vs url
+pros +++
+- simplicity
+- easy to reuse
+- good for simple icons/decorations
+cons ---
+- svg is not accessible (screen readers can't read it)
+- Hard to change fill color with CSS (you can't target internal SVG parts like <path>).
+- Can't animate parts of the icon (like spinning, scaling parts inside). */
