@@ -17,39 +17,44 @@ function createProductCard(product) {
   let totalSpent = 0;
 
   const container = document.createElement('div');
-  container.classList.add('container');
+  container.classList.add('product-container');
 
   container.innerHTML = `
-    <div class="first">
-      <img src="${product.image}" alt="${product.name}">
-    </div>
-    <div class="second">
-      <p>${product.name}</p>
-      <p>Cijena po komadu: ${price.toFixed(2)}€</p>
-      <p>Trenutno stanje u skladištu: <span class="stock">${stock}</span> komada</p>
-    </div>
+  <div class="first">
+    <img src="${product.image}" alt="${product.name}">
+  </div>
+  <div class="second">
+    <p>${product.name}</p>
+    <p>Cijena po komadu: ${price.toFixed(2)}€</p>
+    <p>Trenutno stanje u skladištu:<br><span class="stock">${stock}</span> komada</p>
+  </div>
+  <div class="third">
     <form class="cart-item" data-id="${product.id}">
-      <div class="third">
+      <div class="cart-item-button">
         <button type="button" class="btn-add">+</button>
         <button type="button" class="btn-remove">-</button>
         <button type="submit" class="btn-buy">
           <img src="/images/shopping-cart-icon-shopping-basket-on-transparent-background-free-png.png" alt="kupi proizvod"/>
         </button>
-        <br>
-        <p>
-          <label for="nth-broj-komada-${product.id}">Broj komada:</label>
-          <input type="number" id="nth-broj-komada-${product.id}" min="0" max="${stock}" value="0">
-        </p>
-        <p>
-          <label for="cijena-${product.id}">Ukupna cijena:</label>
-          <input type="number" readonly="readonly" id="cijena-${product.id}" value="0">
-        </p>
-        <p class="purchase-summary"></p>
-        <p class="submission-log"></p>
-        <button type="button" class="btn-reset">Reset</button>
       </div>
+
+      <div class="form-row">
+        <label for="nth-broj-komada-${product.id}">Broj komada:</label>
+        <input type="number" class="num-of-items" id="nth-broj-komada-${product.id}" min="0" max="${stock}" value="0">
+      </div>
+
+      <div class="form-row">
+        <label for="cijena-${product.id}">Cijena:</label>
+        <input type="number" readonly="readonly" id="cijena-${product.id}" value="0">
+      </div>
+
+      <p class="purchase-summary"></p>
+      <p class="submission-log"></p>
+
+      <button class="btn-reset"><span class="reset-text">Reset</span></button>
     </form>
-  `;
+  </div>
+`;
 
   // Query elements inside this container
   const form = container.querySelector('.cart-item');
@@ -84,7 +89,8 @@ function createProductCard(product) {
     }
   });
 
-  btnReset.addEventListener('click', () => {
+  btnReset.addEventListener('click', (e) => {
+    e.preventDefault();
     komad = 0;
     updateUI();
   });
@@ -108,17 +114,17 @@ function createProductCard(product) {
       totalItemsBought += komad;
       totalSpent += purchaseCost;
 
-      submissionLog.innerHTML = `Added ${komad} items<br>Price: <span>${purchaseCost.toFixed(2)}€</span>`;
+      submissionLog.innerHTML = `dodano: ${komad}x<br>cijena: <span>+${purchaseCost.toFixed(2)}€</span>`;
       submissionLog.style.opacity = '1';
 
       setTimeout(() => {
         submissionLog.style.opacity = '0';
-      }, 2500);
+      }, 5000);
 
       komad = 0;
       updateUI();
 
-      purchaseSummary.innerHTML = `<strong>In Cart: ${totalItemsBought}</strong><br><strong>Total Price: ${totalSpent.toFixed(2)}€</strong>`;
+      purchaseSummary.innerHTML = `<strong>U košarici: ${totalItemsBought}</strong><br><strong>Ukupna cijena: ${totalSpent.toFixed(2)}€</strong>`;
     }
   });
 

@@ -195,7 +195,6 @@ in order for the aspect ratio trick to work*/
 }
 
 .text-container {
-
   display: flex;
   position: absolute;
   flex-direction: column;
@@ -286,17 +285,15 @@ h3{
   margin-top: 1rem;
 }
 
-
 #product-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
   padding: 20px;
-  /* background-color: #f8f8f8; */
 }
 
-.container {
+.product-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -306,14 +303,12 @@ h3{
   width: 300px;
   height: 100%;
   min-height: 550px;
-  /* background-color: white; */
   transition: transform 0.3s;
 }
 
-.container:hover {
+.product-container:hover {
   border-color: rgb(0, 161, 0);
 }
-
 
 .first img {
   width: 100%;
@@ -322,33 +317,41 @@ h3{
   transition: transform 0.5s ease;
 }
 
-.first img:hover {
+.product-container img:hover {
   transform: scale(1.05);
 }
 
 .second {
-  display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding: 10px;
-  flex: 1 1 auto;
-  font-size: 0.95rem;
-  text-align: center;
+  font-size: 1rem;
+  text-align: flex start;
   font-family: "Montserrat";
 }
 
 .third {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   padding: 10px;
-  gap: 5px;
 }
 
-.third button {
-  flex: 1 1 30%;
-  padding: 10px;
-  font-size: 1rem;
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.cart-item-button {
+  display: flex;
+  gap: 10px; 
+  margin-bottom: 10px;
+}
+
+.cart-item-button button{
+  height: 35px; 
+  flex: 1;
+  font-size: 1.4rem;
+  font-family: "Montserrat";
   cursor: pointer;
   border-radius: 5px;
 }
@@ -356,13 +359,17 @@ h3{
 .btn-add {
   background-color: #4CAF50;
   color: white;
-  border: none
+  border: none;
+  flex: 1 1 auto;
+  border-radius: 4px;
 }
 
 .btn-remove {
   background-color: #f44336;
   color: white;
-  border: none
+  border: none;
+  flex: 1 1 auto;
+  border-radius: 4px;
 }
 
 .btn-buy {
@@ -371,7 +378,9 @@ h3{
   align-items: center;
   background-color: green;
   border: 3px solid green;
-  transition: border-color 0.5s
+  transition: border-color 0.5s;
+  flex: 1 1 auto;
+  border-radius: 4px;
 }
 
 .btn-buy:hover{
@@ -383,24 +392,128 @@ h3{
   height: 25px;
 }
 
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.form-row label {
+  font-size: 1rem;
+  font-family: "Montserrat";
+  flex: 1;
+  text-align: left;
+}
+
+.form-row input {
+  flex: 1;
+  max-width: 120px;
+  font-size: 1rem;
+  text-align: right;
+}
+
+/* Main button styles */
+.btn-reset {
+  width: 100%;
+  margin-top: auto;
+  padding: 10px;
+  font-size: 1rem;
+  font-family: "Montserrat";
+  background-color: #ddd;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: stretch;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Default 3D effect */
+  transition: all 0.2s ease-in-out; /* Smooth transition for hover and press */
+}
+
+.btn-reset:hover {
+  background-color: red;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 2px 5px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+}
+
+.btn-reset:active {
+  background-color: #c83232; /* Darker red for active/pressed state */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05); /* Inset shadow to simulate press */
+  transform: translateY(4px); /* Simulate pressing down */
+}
+
+/* Lines forming the "X" */
+.btn-reset::before,
+.btn-reset::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  width: 12px;
+  height: 2px;
+  background-color: #333;
+  top: 50%;
+  transform-origin: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-reset::before {
+  transform: rotate(45deg);
+}
+
+.btn-reset::after {
+  transform: rotate(-45deg);
+}
+
+/* Optional hover effect for lines */
+.btn-reset:hover::before,
+.btn-reset:hover::after {
+  background-color: white;
+}
+
+/* Rotation effect on hover */
+.btn-reset:hover::before {
+  transform: rotate(225deg); /* Rotate by 180deg (225deg since it's 45deg + 180deg) */
+}
+
+.btn-reset:hover::after {
+  transform: rotate(135deg); /* Rotate by 180deg (135deg since it's -45deg + 180deg) */
+}
+
 .third input[type="number"] {
-  width: 35%;
-  margin-top: 10px;
-  text-align: center;
-  font-size: 2rem;
+  display: flex;
+  text-align: right;
+  font-size: 1.4rem;
+  max-width: 120px;
+  font-family: "Montserrat";
+}
+
+.third label {
+  font-size: 1rem;
+  font-family: "Montserrat";
+  flex: 1; 
+  text-align: left; 
+}
+
+.purchase-summary,
+.submission-log {
+  text-align: left;
+  margin: 5px 0;
+  font-size: 1.2rem;
+  font-family: "Montserrat";
 }
 
 .submission-log {
   color: white;
-  background-color: rgba(0, 0, 0, 0.7); /* semi-transparent black */
-  border: 1px solid #00ff00; /* green border */
-  border-radius: 8px; /* rounded corners */
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid #00ff00;
+  border-radius: 8px;
   padding: 0.5em 1em;
   transition: opacity 0.5s ease;
   opacity: 0;
   margin-top: 0.5em;
-  font-size: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .submission-log .price-green {
@@ -435,7 +548,6 @@ footer h3{
   display: flex;
   gap: 5px;
 }
-
 
 .icon {
   display: flex;
@@ -480,8 +592,6 @@ footer h3{
 .kontakt-info{
   margin-top: 1rem;
 }
-
-
 
 /* pros and cons of inline svg vs url
 pros +++
